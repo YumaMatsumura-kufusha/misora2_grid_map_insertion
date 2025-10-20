@@ -30,10 +30,10 @@ GridMapInsertion::GridMapInsertion(const rclcpp::NodeOptions & options)
 
   // Subscriber
   sub_global_grid_map_ = this->create_subscription<GridMapAdaptedType>(
-    "global_grid_map", rclcpp::QoS(rclcpp::KeepLast(1)).transient_local().reliable(),
+    "grid_map", rclcpp::QoS(rclcpp::KeepLast(1)).transient_local().reliable(),
     std::bind(&GridMapInsertion::globalGridMapCallback, this, std::placeholders::_1), map_sub_opt);
   sub_local_grid_map_ = this->create_subscription<GridMapAdaptedType>(
-    "local_grid_map", 1,
+    "cropped_local_grid_map", 1,
     std::bind(&GridMapInsertion::localGridMapCallback, this, std::placeholders::_1), map_sub_opt);
 
   // Timer
